@@ -1,0 +1,15 @@
+name: rotatelogs
+version: "1.0"
+author: Lander Brandt <labrandt@microsoft.com>
+about: Rotates logs between multiple files
+args:
+    - MAX_SIZE:
+        short: m
+        long: max-size
+        value_name: MAX_SIZE
+        help: Sets the max file size (default 2MB)
+        takes_value: true
+    - FILE_PATTERN:
+        help: Sets the filename pattern. Expected input is something like output.{}.txt, where {} will be replaced with an integer.
+        required: true
+        index: 1
