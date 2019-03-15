@@ -54,6 +54,7 @@ fn main() -> std::io::Result<()> {
         current_file.write_all(input.as_bytes())?;
 
         if current_file_size > file_size {
+            current_file_size = 0;
             if using_first_file {
                 using_first_file = false;
                 current_file = &mut second_file;
@@ -61,6 +62,9 @@ fn main() -> std::io::Result<()> {
                 using_first_file = true;
                 current_file = &mut first_file;
             }
+
+            current_file.set_len(0)?;
+            current_file.seek(std::io::SeekFrom::Start(0))?;
         }
     }
 
